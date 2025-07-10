@@ -18,6 +18,7 @@ class LoginForm extends Form {
      * @param {string} [selectors.passwordInput] - Selector for the password input field.
      * @param {string} [selectors.loginButton] - Selector for the login button.
      * @param {string} [selectors.csrfToken] - Selector for the CSRF token hidden input.
+     * @param {string} [selectors.errorMessage] - Selector for the error message element.
      */
     constructor(uid, selectors = {}) {
         // Default form selector
@@ -48,6 +49,11 @@ class LoginForm extends Form {
         this.csrfToken = new Input(
             `${uid}-csrfToken`,
             selectors.csrfToken || `${this.selector} input[name="csrfmiddlewaretoken"]`
+        );
+        
+        this.errorMessage = new BasicComponent(
+            `${uid}-errorMessage`,
+            selectors.errorMessage || `${this.selector} p`
         );
     }
     
@@ -129,6 +135,24 @@ class LoginForm extends Form {
      */
     submitForm() {
         this.submit();
+        return this;
+    }
+    
+    /**
+     * Checks if the error message is visible.
+     * @returns {LoginForm} This instance of LoginForm for chaining calls.
+     */
+    shouldShowError() {
+        this.errorMessage.shouldBeVisible();
+        return this;
+    }
+    
+    /**
+     * Checks if the error message is not visible.
+     * @returns {LoginForm} This instance of LoginForm for chaining calls.
+     */
+    shouldNotShowError() {
+        this.errorMessage.shouldNotBeVisible();
         return this;
     }
 }

@@ -15,7 +15,6 @@
  */
 
 describe('User Login with Correct Credentials', { tags: '@login' }, () => {
-    let testData;
     let testUser;
 
     before(() => {
