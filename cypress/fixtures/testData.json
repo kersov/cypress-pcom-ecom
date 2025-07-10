@@ -1,0 +1,96 @@
+{
+  "userRegistration": {
+    "validUser": {
+      "name": "John Doe",
+      "email": "john.doe.test2463236246@example.com",
+      "title": "Mr",
+      "password": "TestPassword123!",
+      "dateOfBirth": {
+        "day": "15",
+        "month": "6",
+        "year": "1990"
+      },
+      "preferences": {
+        "newsletter": true,
+        "offers": true
+      },
+      "address": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "company": "Test Company Inc",
+        "address1": "123 Main Street",
+        "address2": "Apartment 4B",
+        "country": "United States",
+        "state": "California",
+        "city": "Los Angeles",
+        "zipcode": "90210",
+        "mobileNumber": "+1-555-123-4567"
+      }
+    },
+    "testUser": {
+      "name": "Test User",
+      "email": "test.user@automation.com",
+      "title": "Mrs",
+      "password": "AutomationTest2025",
+      "dateOfBirth": {
+        "day": "20",
+        "month": "3",
+        "year": "1985"
+      },
+      "preferences": {
+        "newsletter": false,
+        "offers": true
+      },
+      "address": {
+        "firstName": "Test",
+        "lastName": "User",
+        "company": "Automation Ltd",
+        "address1": "456 Test Avenue",
+        "address2": "Suite 100",
+        "country": "Canada",
+        "state": "Ontario",
+        "city": "Toronto",
+        "zipcode": "M5V 3A8",
+        "mobileNumber": "+1-416-555-9876"
+      }
+    },
+    "minimalUser": {
+      "name": "Minimal Test",
+      "email": "minimal.test@example.org",
+      "title": "Mr",
+      "password": "MinimalPass123",
+      "dateOfBirth": {
+        "day": "10",
+        "month": "12",
+        "year": "1995"
+      },
+      "preferences": {
+        "newsletter": false,
+        "offers": false
+      },
+      "address": {
+        "firstName": "Minimal",
+        "lastName": "Test",
+        "address1": "789 Simple Road",
+        "country": "Australia",
+        "state": "New South Wales",
+        "city": "Sydney",
+        "zipcode": "2000",
+        "mobileNumber": "+61-2-9876-5432"
+      }
+    }
+  },
+  "urls": {
+    "homepage": "/",
+    "loginPage": "/login",
+    "signupPage": "/signup",
+    "accountCreated": "/account_created"
+  },
+  "messages": {
+    "newUserSignup": "New User Signup!",
+    "enterAccountInfo": "Enter Account Information",
+    "accountCreated": "Account Created!",
+    "accountDeleted": "Account Deleted!",
+    "loggedInAs": "Logged in as"
+  }
+}
