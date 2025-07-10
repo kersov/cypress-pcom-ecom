@@ -9,7 +9,7 @@
  * Uses PCOM (Page Object Component Model) approach with reusable page objects and components.
  */
 
-describe('User Registration', { tags: '@registration'x }, () => {
+describe('User Registration', { tags: '@registration' }, () => {
     let testData;
 
     before(() => {

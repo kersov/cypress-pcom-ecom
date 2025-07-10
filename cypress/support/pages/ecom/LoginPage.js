@@ -31,7 +31,7 @@ class LoginPage extends StorefrontPage {
      * @returns {LoginPage} - Returns this instance for method chaining
      */
     login(email, password) {
-        this.loginForm.fillAndSubmit(email, password);
+        this.loginForm.login(email, password);
         return this;
     }
 
