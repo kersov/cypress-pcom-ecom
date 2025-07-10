@@ -18,6 +18,7 @@ class SignupForm extends Form {
      * @param {string} [selectors.emailInput] - Selector for the email input field.
      * @param {string} [selectors.signupButton] - Selector for the signup button.
      * @param {string} [selectors.csrfToken] - Selector for the CSRF token hidden input.
+     * @param {string} [selectors.errorMessage] - Selector for the error message element.
      */
     constructor(uid, selectors = {}) {
         // Default form selector
@@ -48,6 +49,11 @@ class SignupForm extends Form {
         this.csrfToken = new Input(
             `${uid}-csrfToken`,
             selectors.csrfToken || `${this.selector} input[name="csrfmiddlewaretoken"]`
+        );
+        
+        this.errorMessage = new BasicComponent(
+            `${uid}-errorMessage`,
+            selectors.errorMessage || `${this.selector} p`
         );
     }
     
@@ -129,6 +135,30 @@ class SignupForm extends Form {
      */
     submitForm() {
         this.submit();
+        return this;
+    }
+    
+    /**
+     * Checks if the error message is visible.
+     * @returns {SignupForm} This instance of SignupForm for chaining calls.
+     */
+    shouldShowError() {
+        this.errorMessage.shouldBeVisible();
+        return this;
+    }
+    
+    /**
+     * Checks if the error message is not visible.
+     * @returns {SignupForm} This instance of SignupForm for chaining calls.
+     */
+    shouldNotShowError() {
+        // Check if error element exists first, if not that's fine (no error shown)
+        cy.get('body').then(($body) => {
+            if ($body.find(this.errorMessage.selector).length > 0) {
+                this.errorMessage.shouldNotBeVisible();
+            }
+            // If element doesn't exist, no error is shown, which is what we want
+        });
         return this;
     }
 }
