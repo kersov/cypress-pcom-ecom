@@ -78,6 +78,10 @@
         "zipcode": "2000",
         "mobileNumber": "+61-2-9876-5432"
       }
+    },
+    "incorrectLoginUser": {
+      "email": "incorrect.user@automation.com",
+      "password": "IncorrectPassword123"
     }
   },
   "urls": {
