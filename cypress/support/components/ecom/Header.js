@@ -31,52 +31,52 @@ class Header extends BasicComponent {
         // Initialize subcomponents with default selectors, allowing override via selectors parameter
         this.signupLoginButton = new Link(
             'signupLoginButton', 
-            selectors.signupLoginButton || 'a[href="/login"]'
+            selectors.signupLoginButton || `${this.selector} a[href="/login"]`
         );
         
         this.logoutButton = new Link(
             'logoutButton',
-            selectors.logoutButton || 'a[href="/logout"]'
+            selectors.logoutButton || `${this.selector} a[href="/logout"]`
         );
         
         this.deleteAccountButton = new Link(
             'deleteAccountButton',
-            selectors.deleteAccountButton || 'a[href="/delete_account"]'
+            selectors.deleteAccountButton || `${this.selector} a[href="/delete_account"]`
         );
         
         this.testCasesButton = new Link(
             'testCasesButton',
-            selectors.testCasesButton || 'a[href="/test_cases"]'
+            selectors.testCasesButton || `${this.selector} a[href="/test_cases"]`
         );
         
         this.productsButton = new Link(
             'productsButton',
-            selectors.productsButton || 'a[href="/products"]'
+            selectors.productsButton || `${this.selector} a[href="/products"]`
         );
         
         this.cartButton = new Link(
             'cartButton',
-            selectors.cartButton || 'a[href="/view_cart"]'
+            selectors.cartButton || `${this.selector} a[href="/view_cart"]`
         );
         
         this.contactUsButton = new Link(
             'contactUsButton',
-            selectors.contactUsButton || 'a[href="/contact_us"]'
+            selectors.contactUsButton || `${this.selector} a[href="/contact_us"]`
         );
         
         this.homeButton = new Link(
             'homeButton',
-            selectors.homeButton || 'a[href="/"]'
+            selectors.homeButton || `${this.selector} a[href="/"]`
         );
         
         this.logo = new Link(
             'logo',
-            selectors.logo || '.logo a'
+            selectors.logo || `${this.selector} .logo a`
         );
         
         this.loggedInAsMessage = new BasicComponent(
             'loggedInAsMessage',
-            selectors.loggedInAsMessage || '.nav.navbar-nav li:last-child a'
+            selectors.loggedInAsMessage || `${this.selector} .nav.navbar-nav li:last-child a`
         );
         
         // Add all subcomponents as nested components
