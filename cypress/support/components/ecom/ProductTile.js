@@ -122,6 +122,38 @@ class ProductTile extends BasicComponent {
         this.trigger('mouseover');
         return this;
     }
+
+    /**
+     * Gets the text of the regular product name.
+     * @returns {Cypress.Chainable<string>} The product name.
+     */
+    getProductName() {
+        return this.nameRegular.getText();
+    }
+
+    /**
+     * Gets the text of the regular product price.
+     * @returns {Cypress.Chainable<string>} The product price.
+     */
+    getProductPrice() {
+        return this.priceRegular.getText();
+    }
+
+    /**
+     * Gets the text of the overlay product name.
+     * @returns {Cypress.Chainable<string>} The overlay product name.
+     */
+    getOverlayName() {
+        return this.nameOverlay.getText();
+    }
+
+    /**
+     * Gets the text of the overlay product price.
+     * @returns {Cypress.Chainable<string>} The overlay product price.
+     */
+    getOverlayPrice() {
+        return this.priceOverlay.getText();
+    }
 }
 
 module.exports = ProductTile;

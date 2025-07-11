@@ -17,12 +17,14 @@ class StorefrontPage extends BasicPage {
         this.footer = Cypress.components.footer;
         this.consentBanner = Cypress.components.consentBanner;
         this.scrollUpButton = Cypress.components.scrollUpButton;
+        this.cartModal = Cypress.components.cartModal;
         
         // Add common storefront components
         this.addComponent(this.header);
         this.addComponent(this.footer);
         this.addComponent(this.consentBanner);
         this.addComponent(this.scrollUpButton);
+        this.addComponent(this.cartModal);
     }
 
     /**

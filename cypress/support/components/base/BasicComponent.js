@@ -604,6 +604,14 @@ class BasicComponent {
         this.should('not.match', selector);
         return this;
     }
+
+    /**
+     * Gets the text content of the component.
+     * @returns {Cypress.Chainable<string>} The text content of the component.
+     */
+    getText() {
+        return this.get().invoke('text');
+    }
 }
 
 module.exports = BasicComponent;
