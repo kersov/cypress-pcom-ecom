@@ -9,6 +9,7 @@ const ProductSlider = require('./components/ecom/ProductSlider');
 const LoginForm = require('./components/ecom/LoginForm');
 const SignupForm = require('./components/ecom/SignupForm');
 const EnterAccountInformationForm = require('./components/ecom/EnterAccountInformationForm');
+const ContactUsForm = require('./components/ecom/ContactUsForm');
 
 Cypress.components = {};
 
@@ -26,3 +27,4 @@ Cypress.components.loginForm = new LoginForm('loginForm');
 Cypress.components.signupForm = new SignupForm('signupForm');
 //signup
 Cypress.components.enterAccountInformationForm = new EnterAccountInformationForm('enterAccountInformationForm');
+Cypress.components.contactUsForm = new ContactUsForm('contactUsForm');
