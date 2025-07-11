@@ -96,5 +96,8 @@
     "accountCreated": "Account Created!",
     "accountDeleted": "Account Deleted!",
     "loggedInAs": "Logged in as"
+  },
+  "productSearch": {
+    "searchTerm": "Tshirt"
   }
 }

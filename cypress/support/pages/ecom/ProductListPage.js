@@ -1,4 +1,5 @@
 const StorefrontPage = require('./StorefrontPage');
+const ProductSearch = require('../../components/ecom/ProductSearch');
 
 /**
  * Represents the products list page of the ecommerce website.
@@ -16,11 +17,13 @@ class ProductListPage extends StorefrontPage {
         this.productGrid = Cypress.components.productGrid;
         this.categoriesSidebar = Cypress.components.categoriesSidebar;
         this.brandsSidebar = Cypress.components.brandsSidebar;
+        this.productSearch = new ProductSearch('productSearch');
         
         // Add product list page specific components
         this.addComponent(this.productGrid);
         this.addComponent(this.categoriesSidebar);
         this.addComponent(this.brandsSidebar);
+        this.addComponent(this.productSearch);
     }
 
     /**
@@ -88,6 +91,17 @@ class ProductListPage extends StorefrontPage {
      */
     getProduct(index) {
         return this.productGrid.eq(index);
+    }
+
+    /**
+     * Performs a product search.
+     * @param {string} productName - The name of the product to search for.
+     * @returns {ProductListPage} - The instance of ProductListPage for chaining calls.
+     */
+    performProductSearch(productName) {
+        this.productSearch.typeProductName(productName);
+        this.productSearch.clickSearchButton();
+        return this;
     }
 }
 
