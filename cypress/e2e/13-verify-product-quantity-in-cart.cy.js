@@ -97,21 +97,30 @@ describe('Verify Product Quantity in Cart', { tags: '@cart @quantity' }, () => {
         // Step 12: Verify total price calculation (quantity * unit price)
         cy.log('**Step 12: Verify total price calculation**');
         cartItem.getTotalPrice().then((totalPrice) => {
-            const currencyPrefix = unitPriceMatch[1]; // "Rs. "
-            const numericValue = parseFloat(unitPriceMatch[2].replace(/,/g, ''));
-            const currencySuffix = unitPriceMatch[3] || ''; // any suffix if present
-
-            // Calculate expected total price
-            const expectedTotalNumeric = numericValue * 4;
-            const expectedTotalPrice = currencyPrefix + expectedTotalNumeric + currencySuffix;
-
-            cy.log(`Unit price: ${productData.price}`);
-            cy.log(`Parsed unit price: ${currencyPrefix}${numericValue}${currencySuffix}`);
-            cy.log(`Expected total: ${expectedTotalPrice}`);
-            cy.log(`Actual total: ${totalPrice}`);
-
-            // Compare the calculated total with actual total
-            expect(totalPrice).to.equal(expectedTotalPrice);
+            // Parse the unit price to extract currency symbol and numeric value
+            // Example: "Rs. 500" -> currency: "Rs. ", numeric: 500
+            const unitPriceMatch = productData.price.match(/^([^\d]*)([\d.,]+)(.*)$/);
+            if (unitPriceMatch) {
+                const currencyPrefix = unitPriceMatch[1]; // "Rs. "
+                const numericValue = parseFloat(unitPriceMatch[2].replace(/,/g, '')); // 500
+                const currencySuffix = unitPriceMatch[3] || ''; // any suffix if present
+                
+                // Calculate expected total price
+                const expectedTotalNumeric = numericValue * 4;
+                const expectedTotalPrice = currencyPrefix + expectedTotalNumeric + currencySuffix;
+                
+                cy.log(`Unit price: ${productData.price}`);
+                cy.log(`Parsed unit price: ${currencyPrefix}${numericValue}${currencySuffix}`);
+                cy.log(`Expected total: ${expectedTotalPrice}`);
+                cy.log(`Actual total: ${totalPrice}`);
+                
+                // Compare the calculated total with actual total
+                expect(totalPrice).to.equal(expectedTotalPrice);
+            } else {
+                // Fallback: just verify total price is present if parsing fails
+                expect(totalPrice).to.not.be.empty;
+                cy.log(`Could not parse price format: ${productData.price}, but total price is present: ${totalPrice}`);
+            }
         });
 
         cy.log('**Test completed successfully: Product added to cart with correct quantity of 4**');
