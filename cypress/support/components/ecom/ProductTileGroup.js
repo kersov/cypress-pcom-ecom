@@ -22,6 +22,43 @@ class ProductTileGroup extends Group(ProductTile) {
             throw new Error('ProductTileGroup requires a selector to be provided');
         }
     }
+
+    /**
+     * Verifies that the product group contains at least one product.
+     * @returns {ProductTileGroup} - The instance of ProductTileGroup for chaining calls.
+     */
+    shouldHaveProducts() {
+        this.get().should('have.length.greaterThan', 0);
+        return this;
+    }
+
+    /**
+     * Clicks on "View Product" link for a specific product by index.
+     * @param {number} index - The index of the product (0-based).
+     * @returns {ProductTileGroup} - The instance of ProductTileGroup for chaining calls.
+     */
+    clickViewProductAtIndex(index) {
+        this.eq(index).clickViewProduct();
+        return this;
+    }
+
+    /**
+     * Clicks on "View Product" link for the first product in the list.
+     * @returns {ProductTileGroup} - The instance of ProductTileGroup for chaining calls.
+     */
+    clickViewProductAtFirst() {
+        this.first().clickViewProduct();
+        return this;
+    }
+
+    /**
+     * Clicks on "View Product" link for the last product in the list.
+     * @returns {ProductTileGroup} - The instance of ProductTileGroup for chaining calls.
+     */
+    clickViewProductAtLast() {
+        this.last().clickViewProduct();
+        return this;
+    }
 }
 
 module.exports = ProductTileGroup;

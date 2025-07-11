@@ -23,12 +23,13 @@ class ProductTile extends BasicComponent {
      * @param {string} [selectorOrOptions.viewProductLink] - Selector for the view product link.
      */
     constructor(uid, selectorOrOptions) {
-        // Handle both string selector and options object
-        if (typeof selectorOrOptions === 'string') {
-            super(uid, selectorOrOptions);
-        } else if (selectorOrOptions && selectorOrOptions.selector) {
-            super(uid, selectorOrOptions.selector);
-        } else {
+        // Let BasicComponent handle all cases (string, function, object)
+        super(uid, selectorOrOptions);
+
+        // Only validate selector requirement if it's not a function (callback)
+        if (typeof selectorOrOptions !== 'function' && 
+            typeof selectorOrOptions !== 'string' && 
+            (!selectorOrOptions || !selectorOrOptions.selector)) {
             throw new Error('ProductTile requires a selector to be provided');
         }
 
@@ -38,42 +39,42 @@ class ProductTile extends BasicComponent {
         // Initialize subcomponents with selectors relative to the main container
         this.productImage = new Image(
             `${uid}-image`,
-            selectors.productImage || `${this.selector} .productinfo img`
+            selectors.productImage || this.getChild('.productinfo img')
         );
         
         this.priceRegular = new BasicComponent(
             `${uid}-priceRegular`,
-            selectors.priceRegular || `${this.selector} .productinfo h2`
+            selectors.priceRegular || this.getChild('.productinfo h2')
         );
         
         this.priceOverlay = new BasicComponent(
             `${uid}-priceOverlay`,
-            selectors.priceOverlay || `${this.selector} .overlay-content h2`
+            selectors.priceOverlay || this.getChild('.overlay-content h2')
         );
         
         this.nameRegular = new BasicComponent(
             `${uid}-nameRegular`,
-            selectors.nameRegular || `${this.selector} .productinfo p`
+            selectors.nameRegular || this.getChild('.productinfo p')
         );
         
         this.nameOverlay = new BasicComponent(
             `${uid}-nameOverlay`,
-            selectors.nameOverlay || `${this.selector} .overlay-content p`
+            selectors.nameOverlay || this.getChild('.overlay-content p')
         );
         
         this.addToCartRegular = new Button(
             `${uid}-addToCartRegular`,
-            selectors.addToCartRegular || `${this.selector} .productinfo .add-to-cart`
+            selectors.addToCartRegular || this.getChild('.productinfo .add-to-cart')
         );
         
         this.addToCartOverlay = new Button(
             `${uid}-addToCartOverlay`,
-            selectors.addToCartOverlay || `${this.selector} .overlay-content .add-to-cart`
+            selectors.addToCartOverlay || this.getChild('.overlay-content .add-to-cart')
         );
         
         this.viewProductLink = new Link(
             `${uid}-viewProduct`,
-            selectors.viewProductLink || `${this.selector} .choose a`
+            selectors.viewProductLink || this.getChild('.choose a')
         );
     }
 

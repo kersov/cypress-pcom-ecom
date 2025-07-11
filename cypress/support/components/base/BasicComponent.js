@@ -99,6 +99,22 @@ class BasicComponent {
         return Array.from(this.nestedComponents.values());
     }
 
+    /**
+     * Helper method to get child component selector.
+     * If this component has a selector, it prepends it to the child selector.
+     * If this component uses a callback, it returns a callback that finds the child relative to this component.
+     * @param {string} childSelector - The relative selector for the child component.
+     * @returns {string|Function} - The full selector string or a callback function.
+     */
+    getChild(childSelector) {
+        if (this.selector) {
+            return `${this.selector} ${childSelector}`;
+        } else if (this.callback) {
+            return () => this.get().find(childSelector);
+        }
+        return childSelector;
+    }
+
     /** ACTION METHODS */
 
     /**
