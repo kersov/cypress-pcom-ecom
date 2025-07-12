@@ -24,6 +24,11 @@ class HomePage extends StorefrontPage {
         this.addComponent(this.productGrid);
         this.addComponent(this.recommendedSlider);
     }
+
+    addProductToCart(productIndex) {
+        this.productGrid.getProduct(productIndex).addToCart();
+        return this;
+    }
 }
 
 module.exports = HomePage;

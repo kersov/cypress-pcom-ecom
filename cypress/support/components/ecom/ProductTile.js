@@ -82,7 +82,7 @@ class ProductTile extends BasicComponent {
      * Clicks the add to cart button (regular view).
      * @returns {ProductTile} This instance of ProductTile for chaining calls.
      */
-    clickAddToCart() {
+    clickAddToCartRegular() {
         this.addToCartRegular.click();
         return this;
     }
@@ -153,6 +153,23 @@ class ProductTile extends BasicComponent {
      */
     getOverlayPrice() {
         return this.priceOverlay.getText();
+    }
+
+    /**
+     * Adds the product to cart using overlay with hover effect and wait.
+     * This method scrolls to the product, hovers over it, waits for the hover effect,
+     * and then clicks the add to cart overlay button with force option.
+     * @param {Object} [options] - Options for the add to cart action.
+     * @param {number} [options.waitTime=500] - Time to wait after hover effect in milliseconds.
+     * @param {boolean} [options.force=true] - Whether to force click the overlay button.
+     * @returns {ProductTile} This instance of ProductTile for chaining calls.
+     */
+    addToCart(options = {}) {
+        const { waitTime = 500, force = true } = options;
+        
+        // Scroll to product, hover, wait for effect, and add to cart using overlay with chaining
+        this.scrollIntoView().addToCartRegular.click();
+        return this;
     }
 }
 

@@ -612,6 +612,30 @@ class BasicComponent {
     getText() {
         return this.get().invoke('text');
     }
+
+    /**
+     * Waits for a specified amount of time or for an alias to resolve using Cypress .wait().
+     * 
+     * Supported argument patterns:
+     * - wait(time)
+     * - wait(time, options)
+     * - wait(alias)
+     * - wait(alias, options)
+     * - wait([alias1, alias2, ...])
+     * - wait([alias1, alias2, ...], options)
+     * 
+     * @param {number|string|string[]} timeOrAlias - Time in milliseconds, alias string, or array of aliases to wait for.
+     * @param {Object} [options] - Options object for Cypress .wait(), e.g., { timeout: 30000 }.
+     * @returns {BasicComponent} This instance of BasicComponent for chaining calls.
+     */
+    wait(timeOrAlias, options) {
+        if (options) {
+            cy.wait(timeOrAlias, options);
+        } else {
+            cy.wait(timeOrAlias);
+        }
+        return this;
+    }
 }
 
 module.exports = BasicComponent;

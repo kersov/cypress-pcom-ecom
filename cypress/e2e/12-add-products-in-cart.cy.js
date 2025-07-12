@@ -52,13 +52,8 @@ describe('Add Products to Cart', { tags: '@cart' }, () => {
             firstProductData.price = price;
         });
 
-        // Scroll to first product, hover and add to cart using overlay with force
-        firstProduct.scrollIntoView();
-        firstProduct.hover();
-        // Wait a bit for hover effect
-        cy.wait(500);
-        // Use force: true to bypass element coverage issues
-        firstProduct.addToCartOverlay.click({ force: true });
+        // Add first product to cart with hover effect
+        firstProduct.addToCart();
 
         // Step 4: Verify cart modal appears and click "Continue Shopping"
         cy.log('**Step 4: Handle cart modal - Continue Shopping**');
@@ -79,13 +74,8 @@ describe('Add Products to Cart', { tags: '@cart' }, () => {
             secondProductData.price = price;
         });
 
-        // Scroll to second product, hover and add to cart using overlay with force
-        secondProduct.scrollIntoView();
-        secondProduct.hover();
-        // Wait a bit for hover effect
-        cy.wait(500);
-        // Use force: true to bypass element coverage issues
-        secondProduct.addToCartOverlay.click({ force: true });
+        // Add second product to cart with hover effect
+        secondProduct.addToCart();
 
         // Step 6: Verify cart modal appears and click "View Cart"
         cy.log('**Step 6: Handle cart modal - View Cart**');

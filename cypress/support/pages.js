@@ -9,6 +9,9 @@ const StorefrontPage = require('./pages/ecom/StorefrontPage');
 const ProductListPage = require('./pages/ecom/ProductListPage');
 const ProductDetailsPage = require('./pages/ecom/ProductDetailsPage');
 const CartPage = require('./pages/ecom/CartPage');
+const CheckoutPage = require('./pages/ecom/CheckoutPage');
+const PaymentPage = require('./pages/ecom/PaymentPage');
+const OrderPlacedPage = require('./pages/ecom/OrderPlacedPage');
 
 Cypress.pages = {
     homePage: new HomePage(),
@@ -20,5 +23,8 @@ Cypress.pages = {
     testCasesPage: new StorefrontPage('/test_cases'),
     productListPage: new ProductListPage(),
     productDetailsPage: new ProductDetailsPage(),
-    cartPage: new CartPage()
+    cartPage: new CartPage(),
+    checkoutPage: new CheckoutPage(),
+    paymentPage: new PaymentPage(),
+    orderPlacedPage: new OrderPlacedPage()
 };

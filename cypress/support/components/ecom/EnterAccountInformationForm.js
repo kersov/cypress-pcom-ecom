@@ -17,7 +17,6 @@ class EnterAccountInformationForm extends Form {
      * @param {string} uid - The unique identifier for this component.
      * @param {object} [selectors] - Optional object containing custom selectors for subcomponents.
      * @param {string} [selectors.form] - Selector for the form element.
-     * @param {string} [selectors.title] - Selector for the form title.
      * @param {string} [selectors.titleMr] - Selector for the Mr. title radio button.
      * @param {string} [selectors.titleMrs] - Selector for the Mrs. title radio button.
      * @param {string} [selectors.nameInput] - Selector for the name input field.
@@ -28,7 +27,6 @@ class EnterAccountInformationForm extends Form {
      * @param {string} [selectors.yearSelect] - Selector for the year dropdown.
      * @param {string} [selectors.newsletterCheckbox] - Selector for the newsletter checkbox.
      * @param {string} [selectors.offersCheckbox] - Selector for the special offers checkbox.
-     * @param {string} [selectors.addressTitle] - Selector for the address information title.
      * @param {string} [selectors.firstNameInput] - Selector for the first name input.
      * @param {string} [selectors.lastNameInput] - Selector for the last name input.
      * @param {string} [selectors.companyInput] - Selector for the company input.
@@ -46,12 +44,6 @@ class EnterAccountInformationForm extends Form {
         // Default form selector
         const formSelector = selectors.form || '.login-form form';
         super(uid, formSelector);
-        
-        // Account Information Title
-        this.title = new BasicComponent(
-            `${uid}-title`,
-            selectors.title || `${this.selector} h2:contains("Enter Account Information")`
-        );
         
         // Title Radio Buttons
         this.titleMr = new Radio(
@@ -105,12 +97,6 @@ class EnterAccountInformationForm extends Form {
         this.offersCheckbox = new Checkbox(
             `${uid}-offersCheckbox`,
             selectors.offersCheckbox || '#optin'
-        );
-        
-        // Address Information Title
-        this.addressTitle = new BasicComponent(
-            `${uid}-addressTitle`,
-            selectors.addressTitle || `${this.selector} h2:contains("Address Information")`
         );
         
         // Address Fields
@@ -362,6 +348,36 @@ class EnterAccountInformationForm extends Form {
         return this;
     }
     
+    /**
+     * Asserts that the Enter Account Information form is visible.
+     * @returns {EnterAccountInformationForm} This instance for chaining calls.
+     */
+    shouldBeVisible() {
+        super.shouldBeVisible();
+        this.titleMr.shouldBeVisible();
+        this.titleMrs.shouldBeVisible();
+        this.nameInput.shouldBeVisible();
+        this.emailInput.shouldBeVisible();
+        this.passwordInput.shouldBeVisible();
+        this.daySelect.shouldBeVisible();
+        this.monthSelect.shouldBeVisible();
+        this.yearSelect.shouldBeVisible();
+        this.newsletterCheckbox.shouldBeVisible();
+        this.offersCheckbox.shouldBeVisible();
+        this.firstNameInput.shouldBeVisible();
+        this.lastNameInput.shouldBeVisible();
+        this.companyInput.shouldBeVisible();
+        this.address1Input.shouldBeVisible();
+        this.address2Input.shouldBeVisible();
+        this.countrySelect.shouldBeVisible();
+        this.stateInput.shouldBeVisible();
+        this.cityInput.shouldBeVisible();
+        this.zipcodeInput.shouldBeVisible();
+        this.mobileNumberInput.shouldBeVisible();
+        this.createAccountButton.shouldBeVisible();
+        return this;
+    }
+
     /**
      * Fills the complete form with account information.
      * @param {Object} accountInfo - The account information object.

@@ -13,7 +13,7 @@ class CartItems extends Group(CartItem) {
      * @param {string|function|object} [options] - Selector string, callback function, or options object.
      */
     constructor(uid, options) {
-        super(uid, options || '#cart_info_table tbody tr');
+        super(uid, options || '#cart_info table tbody tr');
     }
 
     /**

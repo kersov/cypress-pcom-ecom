@@ -1,6 +1,7 @@
 const StorefrontPage = require('./StorefrontPage');
 const Button = require('../../components/base/Button');
 const CartItems = require('../../components/ecom/CartItems');
+const CheckoutModal = require('../../components/ecom/CheckoutModal');
 
 /**
  * Represents the cart page of the ecommerce website.
@@ -20,9 +21,11 @@ class CartPage extends StorefrontPage {
         );
 
         this.cartItems = new CartItems('cartItems');
+        this.checkoutModal = new CheckoutModal('checkoutModal', '#checkoutModal .modal-content');
 
         this.addComponent(this.proceedToCheckoutButton);
         this.addComponent(this.cartItems);
+        this.addComponent(this.checkoutModal);
     }
 
     /**
@@ -56,6 +59,33 @@ class CartPage extends StorefrontPage {
      */
     clickProceedToCheckout() {
         this.proceedToCheckoutButton.click();
+        return this;
+    }
+
+    /**
+     * Verifies that the checkout modal is visible.
+     * @returns {CartPage} - The instance of CartPage for chaining calls.
+     */
+    shouldShowCheckoutModal() {
+        this.checkoutModal.shouldBeVisible();
+        return this;
+    }
+
+    /**
+     * Clicks the 'Register / Login' link in the checkout modal.
+     * @returns {CartPage} - The instance of CartPage for chaining calls.
+     */
+    clickRegisterLoginFromModal() {
+        this.checkoutModal.clickRegisterLogin();
+        return this;
+    }
+
+    /**
+     * Clicks the 'Continue On Cart' button in the checkout modal.
+     * @returns {CartPage} - The instance of CartPage for chaining calls.
+     */
+    clickContinueOnCartFromModal() {
+        this.checkoutModal.clickContinueOnCart();
         return this;
     }
 }

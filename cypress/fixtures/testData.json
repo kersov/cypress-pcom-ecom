@@ -2,7 +2,7 @@
   "userRegistration": {
     "validUser": {
       "name": "John Doe",
-      "email": "john.doe.test2463236246@example.com",
+      "email": "john.doe.test2648648644342346246@example.com",
       "title": "Mr",
       "password": "TestPassword123!",
       "dateOfBirth": {
@@ -99,5 +99,12 @@
   },
   "productSearch": {
     "searchTerm": "Tshirt"
+  },
+  "payment": {
+    "nameOnCard": "John Doe",
+    "cardNumber": "4100 0000 0000 0000",
+    "cvc": "123",
+    "expiryMonth": "01",
+    "expiryYear": "2025"
   }
 }

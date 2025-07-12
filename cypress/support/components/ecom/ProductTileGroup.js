@@ -59,6 +59,10 @@ class ProductTileGroup extends Group(ProductTile) {
         this.last().clickViewProduct();
         return this;
     }
+
+    getProduct(index) {
+        return this.eq(index);
+    }
 }
 
 module.exports = ProductTileGroup;
