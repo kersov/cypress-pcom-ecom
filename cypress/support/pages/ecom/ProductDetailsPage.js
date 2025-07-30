@@ -2,6 +2,7 @@ const StorefrontPage = require('./StorefrontPage');
 const BasicComponent = require('../../components/base/BasicComponent');
 const Button = require('../../components/base/Button');
 const Input = require('../../components/base/Input');
+const ReviewForm = require('../../components/ecom/ReviewForm');
 
 /**
  * Represents the product details page of the ecommerce website.
@@ -31,9 +32,10 @@ class ProductDetailsPage extends StorefrontPage {
         this.productImage = new BasicComponent('productImage', '.view-product img');
         this.productThumbnails = new BasicComponent('productThumbnails', '.item img');
         
-        // Review section
+                // Review section
         this.reviewSection = new BasicComponent('reviewSection', '.category-tab');
         this.writeReviewHeading = new BasicComponent('writeReviewHeading', 'a[href="#reviews"]');
+        this.reviewForm = new ReviewForm('reviewForm', '#review-form');
         
         // Add components
         this.addComponent(this.productName);
@@ -46,6 +48,8 @@ class ProductDetailsPage extends StorefrontPage {
         this.addComponent(this.addToCartButton);
         this.addComponent(this.productImage);
         this.addComponent(this.reviewSection);
+        this.addComponent(this.writeReviewHeading);
+        this.addComponent(this.reviewForm);
     }
 
     /**
@@ -164,6 +168,40 @@ class ProductDetailsPage extends StorefrontPage {
      */
     getProductPrice() {
         return this.productPrice.get().invoke('text');
+    }
+
+    /**
+     * Scrolls down to the review section to make it visible.
+     * @returns {ProductDetailsPage} - The instance of ProductDetailsPage for chaining calls.
+     */
+    scrollToReviewSection() {
+        this.reviewSection.scrollIntoView();
+        return this;
+    }
+
+    /**
+     * Fills and submits a product review.
+     * @param {Object} reviewData - The review data object.
+     * @param {string} reviewData.name - The reviewer's name.
+     * @param {string} reviewData.email - The reviewer's email.
+     * @param {string} reviewData.review - The review text.
+     * @returns {ProductDetailsPage} - The instance of ProductDetailsPage for chaining calls.
+     */
+    submitReview(reviewData) {
+        this.scrollToReviewSection();
+        this.reviewForm.shouldBeVisible();
+        this.reviewForm.fillReview(reviewData);
+        this.reviewForm.submitReview();
+        return this;
+    }
+
+    /**
+     * Verifies that the review success message is displayed.
+     * @returns {ProductDetailsPage} - The instance of ProductDetailsPage for chaining calls.
+     */
+    shouldShowReviewSuccessMessage() {
+        this.reviewForm.shouldShowSuccessMessage();
+        return this;
     }
 }
 

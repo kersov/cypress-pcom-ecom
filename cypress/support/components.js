@@ -14,6 +14,7 @@ const PaymentForm = require('./components/ecom/PaymentForm');
 const CartModal = require('./components/ecom/CartModal');
 const CheckoutModal = require('./components/ecom/CheckoutModal');
 const CheckoutAddressTile = require('./components/ecom/CheckoutAddressTile');
+const ReviewForm = require('./components/ecom/ReviewForm');
 
 Cypress.components = {};
 
@@ -37,3 +38,4 @@ Cypress.components.signupForm = new SignupForm('signupForm');
 Cypress.components.enterAccountInformationForm = new EnterAccountInformationForm('enterAccountInformationForm');
 Cypress.components.contactUsForm = new ContactUsForm('contactUsForm');
 Cypress.components.paymentForm = new PaymentForm('paymentForm');
+Cypress.components.reviewForm = new ReviewForm('reviewForm');

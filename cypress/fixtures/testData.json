@@ -106,5 +106,10 @@
     "cvc": "123",
     "expiryMonth": "01",
     "expiryYear": "2025"
+  },
+  "productReview": {
+    "name": "John Reviewer",
+    "email": "john.reviewer@example.com",
+    "review": "This product is excellent! Great quality and value for money. I would definitely recommend it to others."
   }
 }
