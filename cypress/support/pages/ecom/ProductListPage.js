@@ -31,8 +31,8 @@ class ProductListPage extends StorefrontPage {
      * @returns {ProductListPage} - The instance of ProductListPage for chaining calls.
      */
     shouldBeOpened() {
-        // Verify URL contains "/products" or "/category_products/" followed by a number
-        cy.url().should('match', /\/(products|category_products\/\d+)/);
+        // Verify URL contains "/products", "/category_products/" followed by a number, or "/brand_products/"
+        cy.url().should('match', /\/(products|category_products\/\d+|brand_products\/\w+)/);
         return this;
     }
 
