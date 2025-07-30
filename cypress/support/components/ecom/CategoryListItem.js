@@ -12,21 +12,21 @@ class CategoryListItem extends ListItem {
      * @param {string} uid - The unique identifier for this component.
      * @param {string} selector - Selector for the category list item element (required).
      * @param {object} [options] - Optional object containing custom selectors for subcomponents.
-     * @param {string} [options.heading] - Selector for the category heading.
+     * @param {string} [options.toggler] - Selector for the category toggler.
      * @param {string} [options.subCategoryList] - Selector for the subcategory list.
      */
     constructor(uid, selector, options = {}) {
         super(uid, selector);
         
         // Initialize subcomponents with default selectors based on the component selector
-        this.heading = new BasicComponent(
+        this.toggler = new BasicComponent(
             'categoryHeading',
-            options.heading || `${selector} .panel-heading`
+            options.toggler || this.getChild('[data-toggle="collapse"]')
         );
         
         this.subCategoryList = new SubCategoryList(
             'categorySubCategoryList',
-            options.subCategoryList || `${selector} .panel-body ul li a`
+            options.subCategoryList || this.getChild('.panel-body ul li a')
         );
     }
     
@@ -35,7 +35,7 @@ class CategoryListItem extends ListItem {
      * @returns {CategoryListItem} This instance of CategoryListItem for chaining calls.
      */
     toggle() {
-        this.heading.click();
+        this.toggler.click();
         return this;
     }
     

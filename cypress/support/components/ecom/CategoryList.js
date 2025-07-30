@@ -24,6 +24,18 @@ class CategoryList extends Group(CategoryListItem) {
             super(uid, selector);
         }
     }
+
+    /**
+     * Gets a specific category item by its name.
+     * @param {string} categoryName - The name of the category to find.
+     * @returns {CategoryListItem} The CategoryListItem instance for the given category name.
+     */
+    getCategoryByName(categoryName) {
+        // Find the category heading that contains the categoryName
+        // Then get its parent .panel.panel-default element
+        const selector = `.panel-group.category-products .panel.panel-default:has(a[data-toggle="collapse"]:contains("${categoryName}"))`;
+        return new CategoryListItem(`${this.uid}-${categoryName}`, selector);
+    }
 }
 
 module.exports = CategoryList;

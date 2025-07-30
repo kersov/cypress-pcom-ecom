@@ -52,6 +52,16 @@ class BasicPage {
         cy.url().should('include', this.path);
         return this;
     }
+
+    /**
+     * Verifies that the page title contains the expected title.
+     * @param {string} expectedTitle - The expected title to be contained in the page title.
+     * @returns {BasicPage} - The instance of ProductListPage for chaining calls.
+     */
+    shouldHaveTitle(expectedTitle) {
+        cy.title().should('eq', expectedTitle);
+        return this;
+    }
 }
 
 module.exports = BasicPage;

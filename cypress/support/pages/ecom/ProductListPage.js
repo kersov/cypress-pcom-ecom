@@ -31,9 +31,18 @@ class ProductListPage extends StorefrontPage {
      * @returns {ProductListPage} - The instance of ProductListPage for chaining calls.
      */
     shouldBeOpened() {
-        super.shouldBeOpened();
-        // Verify page title contains "All Products"
-        cy.title().should('contain', 'All Products');
+        // Verify URL contains "/products" or "/category_products/" followed by a number
+        cy.url().should('match', /\/(products|category_products\/\d+)/);
+        return this;
+    }
+
+    /**
+     * Verifies that the page title contains the expected text.
+     * @param {string} expectedTitle - The expected text to be contained in the page title.
+     * @returns {ProductListPage} - The instance of ProductListPage for chaining calls.
+     */
+    shouldHaveTitle(expectedTitle) {
+        cy.title().should('contain', expectedTitle);
         return this;
     }
 
