@@ -22,6 +22,11 @@ class Footer extends BasicComponent {
         super(uid, footerSelector);
         
         // Initialize subcomponents with default selectors, allowing override via selectors parameter
+        this.subscriptionTitle = new BasicComponent(
+            'subscriptionTitle',
+            selectors.subscriptionTitle || `${this.selector} h2`
+        );
+        
         this.subscriptionForm = new SubscriptionForm(
             'footerSubscriptionForm',
             {
@@ -48,6 +53,7 @@ class Footer extends BasicComponent {
         );
         
         // Add all subcomponents as nested components
+        this.addNestedComponent(this.subscriptionTitle);
         this.addNestedComponent(this.subscriptionForm);
         this.addNestedComponent(this.copyrightText);
         this.addNestedComponent(this.footerWidget);
@@ -98,6 +104,14 @@ class Footer extends BasicComponent {
      */
     getSubscriptionForm() {
         return this.subscriptionForm;
+    }
+    
+    /**
+     * Gets the subscription title component for direct access to its methods.
+     * @returns {BasicComponent} The subscription title component.
+     */
+    getSubscriptionTitle() {
+        return this.subscriptionTitle;
     }
 }
 

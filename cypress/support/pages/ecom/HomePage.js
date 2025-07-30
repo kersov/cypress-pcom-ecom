@@ -13,12 +13,14 @@ class HomePage extends StorefrontPage {
         super(path);
         
         // Assign homepage-specific components as properties
+        this.heroCarousel = Cypress.components.heroCarousel;
         this.categoriesSidebar = Cypress.components.categoriesSidebar;
         this.brandsSidebar = Cypress.components.brandsSidebar;
         this.productGrid = Cypress.components.productGrid;
         this.recommendedSlider = Cypress.components.recommendedSlider;
         
         // Add homepage-specific components
+        this.addComponent(this.heroCarousel);
         this.addComponent(this.categoriesSidebar);
         this.addComponent(this.brandsSidebar);
         this.addComponent(this.productGrid);
