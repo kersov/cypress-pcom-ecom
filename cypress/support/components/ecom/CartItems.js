@@ -25,6 +25,25 @@ class CartItems extends Group(CartItem) {
         this.should('have.length', count);
         return this;
     }
+
+    /**
+     * Asserts that the cart contains at least one product.
+     * @returns {CartItems} This instance of CartItems for chaining calls.
+     */
+    shouldHaveProducts() {
+        this.should('have.length.greaterThan', 0);
+        return this;
+    }
+
+    /**
+     * Stores the current cart item count as an alias for later verification.
+     * @param {string} aliasName - The name of the alias to store the count under.
+     * @returns {CartItems} This instance of CartItems for chaining calls.
+     */
+    storeCount(aliasName) {
+        this.get().its('length').as(aliasName);
+        return this;
+    }
 }
 
 module.exports = CartItems;
