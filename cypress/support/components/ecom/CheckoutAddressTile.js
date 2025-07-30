@@ -78,13 +78,11 @@ class CheckoutAddressTile extends BasicComponent {
     }
 
     /**
-     * Gets all address lines as an array.
-     * @returns {Cypress.Chainable<string[]>} - A chainable that resolves to an array of address lines.
+     * Gets all address lines as text.
+     * @returns {Cypress.Chainable<string>} - A chainable that resolves to the address lines text.
      */
     getAddressLines() {
-        return this.addressLines.getElements().then($elements => {
-            return Array.from($elements).map(el => el.textContent.trim()).filter(text => text.length > 0);
-        });
+        return this.addressLines.getText();
     }
 
     /**
@@ -109,6 +107,48 @@ class CheckoutAddressTile extends BasicComponent {
      */
     getPhone() {
         return this.phone.getText();
+    }
+
+    /**
+     * Verifies that the address details match the expected user address information.
+     * @param {Object} expectedAddress - The expected address object
+     * @param {string} expectedAddress.firstName - Expected first name
+     * @param {string} expectedAddress.lastName - Expected last name
+     * @param {string} expectedAddress.address1 - Expected address line 1
+     * @param {string} [expectedAddress.address2] - Expected address line 2
+     * @param {string} expectedAddress.city - Expected city
+     * @param {string} expectedAddress.state - Expected state
+     * @param {string} expectedAddress.zipcode - Expected zipcode
+     * @param {string} expectedAddress.country - Expected country
+     * @param {string} expectedAddress.mobileNumber - Expected mobile number
+     * @returns {CheckoutAddressTile} - The instance of CheckoutAddressTile for chaining calls.
+     */
+    shouldMatchAddress(expectedAddress) {
+        // Verify full name
+        this.getFullName().should('contain', `${expectedAddress.firstName} ${expectedAddress.lastName}`);
+        
+        // Verify phone number
+        this.getPhone().should('contain', expectedAddress.mobileNumber);
+        
+        // Verify country
+        this.getCountry().should('contain', expectedAddress.country);
+        
+        // Verify address lines contain expected address
+        this.getAddressLines().then((addressText) => {
+            expect(addressText).to.include(expectedAddress.address1);
+            if (expectedAddress.address2) {
+                expect(addressText).to.include(expectedAddress.address2);
+            }
+        });
+
+        // Verify city, state, zip are present
+        this.getCityStateZip().then((cityStateZip) => {
+            expect(cityStateZip).to.include(expectedAddress.city);
+            expect(cityStateZip).to.include(expectedAddress.state);
+            expect(cityStateZip).to.include(expectedAddress.zipcode);
+        });
+
+        return this;
     }
 
     /**
