@@ -2,6 +2,9 @@
  * Custom Cypress commands for reusable actions
  */
 
+// Import HTML logger functionality
+require('./htmlLogger');
+
 /**
  * Registers a new user with the provided user data
  * @param {Object} userData - User data object
@@ -81,4 +84,23 @@ Cypress.Commands.add('deleteUserAccount', () => {
     Cypress.pages.accountDeletedPage
         .shouldBeOpened()
         .clickContinue();
+});
+
+/**
+ * Helper function to manually trigger HTML capture during tests
+ * This can be used in test files when you want to capture HTML at specific points
+ */
+Cypress.Commands.add('captureDebugHtml', (message = 'Manual HTML capture') => {
+    const messageStr = typeof message === 'string' ? message : JSON.stringify(message);
+    cy.log('🔍 ' + messageStr + ' - capturing current page state');
+    cy.captureHtmlWithContext(message);
+});
+
+/**
+ * Helper function to capture HTML before critical actions
+ * Useful for debugging flaky tests
+ */
+Cypress.Commands.add('captureHtmlBeforeAction', (actionDescription) => {
+    const actionStr = typeof actionDescription === 'string' ? actionDescription : JSON.stringify(actionDescription);
+    cy.captureHtmlWithContext('Before action: ' + actionStr);
 });
