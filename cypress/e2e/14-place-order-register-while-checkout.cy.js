@@ -33,8 +33,13 @@ describe('Place Order: Register While Checkout', { tags: '@checkout' }, () => {
     });
 
     it('should allow a user to register and place an order during checkout', () => {
-        const user = testData.userRegistration.validUser;
+        const user = { ...testData.userRegistration.validUser };
         const payment = testData.payment;
+
+        // Generate unique email for this test run
+        const timestamp = Date.now();
+        const randomId = Math.floor(Math.random() * 1000000);
+        user.email = `test.checkout.${timestamp}.${randomId}@example.com`;
 
         // Step 1: Add products to cart
         Cypress.pages.homePage.addProductToCart(0);

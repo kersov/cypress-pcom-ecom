@@ -33,8 +33,13 @@ describe('Download Invoice After Purchase Order', { tags: '@checkout' }, () => {
     });
 
     it('should allow a user to download invoice after placing an order', () => {
-        const user = testData.userRegistration.validUser;
+        const user = { ...testData.userRegistration.validUser };
         const payment = testData.payment;
+
+        // Generate unique email for this test run
+        const timestamp = Date.now();
+        const randomId = Math.floor(Math.random() * 1000000);
+        user.email = `test.invoice.${timestamp}.${randomId}@example.com`;
 
         // Step 1: Register and login user using existing custom command
         cy.log('**Step 1: Register and login user**');

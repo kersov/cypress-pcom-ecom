@@ -25,7 +25,12 @@ describe('User Registration', { tags: '@registration' }, () => {
     });
 
     it('should successfully register a new user with complete information', () => {
-        const user = testData.userRegistration.validUser;
+        const user = { ...testData.userRegistration.validUser };
+        
+        // Generate unique email for this test run
+        const timestamp = Date.now();
+        const randomId = Math.floor(Math.random() * 1000000);
+        user.email = `test.user.${timestamp}.${randomId}@example.com`;
 
         // Step 1-5: Register user using custom command
         cy.registerUser(user);

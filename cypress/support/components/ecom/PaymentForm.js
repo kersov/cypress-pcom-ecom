@@ -54,7 +54,7 @@ class PaymentForm extends Form {
      * @returns {PaymentForm} - The instance of PaymentForm for chaining calls.
      */
     enterNameOnCard(name) {
-        this.nameOnCardInput.type(name);
+        this.nameOnCardInput.type(name, { force: true });
         return this;
     }
 
@@ -64,7 +64,7 @@ class PaymentForm extends Form {
      * @returns {PaymentForm} - The instance of PaymentForm for chaining calls.
      */
     enterCardNumber(cardNumber) {
-        this.cardNumberInput.type(cardNumber);
+        this.cardNumberInput.type(cardNumber, { force: true });
         return this;
     }
 
@@ -74,7 +74,7 @@ class PaymentForm extends Form {
      * @returns {PaymentForm} - The instance of PaymentForm for chaining calls.
      */
     enterCvc(cvc) {
-        this.cvcInput.type(cvc);
+        this.cvcInput.type(cvc, { force: true });
         return this;
     }
 
@@ -84,7 +84,7 @@ class PaymentForm extends Form {
      * @returns {PaymentForm} - The instance of PaymentForm for chaining calls.
      */
     enterExpiryMonth(month) {
-        this.expiryMonthInput.type(month);
+        this.expiryMonthInput.type(month, { force: true });
         return this;
     }
 
@@ -94,7 +94,7 @@ class PaymentForm extends Form {
      * @returns {PaymentForm} - The instance of PaymentForm for chaining calls.
      */
     enterExpiryYear(year) {
-        this.expiryYearInput.type(year);
+        this.expiryYearInput.type(year, { force: true });
         return this;
     }
 

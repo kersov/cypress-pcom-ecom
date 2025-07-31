@@ -43,14 +43,8 @@ module.exports = defineConfig({
             return { ...config, ...siteConfig };
         },
         
-        // Enable video recording to complement HTML capture
-        video: true,
-        
         // Enable screenshots on failure (works alongside HTML capture)
         screenshotOnRunFailure: true,
-        
-        // Configure where to save videos and screenshots
-        videosFolder: 'cypress/videos',
         screenshotsFolder: 'cypress/screenshots',
         
         // Increase command timeout to allow for HTML capture

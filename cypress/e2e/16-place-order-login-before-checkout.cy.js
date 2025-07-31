@@ -35,8 +35,13 @@ describe('Place Order: Login Before Checkout', { tags: '@checkout' }, () => {
     });
 
     it('should allow a user to login before checkout and place an order', () => {
-        const user = testData.userRegistration.validUser;
+        const user = { ...testData.userRegistration.validUser };
         const payment = testData.payment;
+
+        // Generate unique email for this test run
+        const timestamp = Date.now();
+        const randomId = Math.floor(Math.random() * 1000000);
+        user.email = `test.login.${timestamp}.${randomId}@example.com`;
 
         // Prerequisite: Register a user and log out
         cy.log('**Prerequisite: Register a user and log out**');
